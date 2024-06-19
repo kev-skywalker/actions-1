@@ -17,6 +17,12 @@ jobs:
             run: |
              chmod +x ascii-script.sh
              ./ascii-script.sh
+          
+          - name:  Upload dragon.txt file
+            uses: actions/upload-artifact@v4
+            with:
+              name: dragon-text-file
+              path: dragon.txt
 
     test_job_2:
         name: Test job 2
@@ -25,6 +31,12 @@ jobs:
         steps:
           - name: Checkout Repo
             uses: actions/checkout@v4
+        
+          - name: Download dragon.txt file
+            uses: actions/download-artifact@v4
+            with:
+              name: dragon-text-file
+              path: dragon.txt
 
           - name: List Repo
             run: ls -ltra
@@ -39,6 +51,12 @@ jobs:
         steps:
           - name: Checkout Repo
             uses: actions/checkout@v4
+
+          - name: Download dragon.txt file
+            uses: actions/download-artifact@v4
+            with:
+              name: dragon-text-file
+              path: dragon.txt
 
           - name: List Repo
             run: ls -ltra
