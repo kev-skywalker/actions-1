@@ -29,9 +29,6 @@ jobs:
         needs: build_job_1
         runs-on: ubuntu-latest
         steps:
-          - name: Checkout Repo
-            uses: actions/checkout@v4
-        
           - name: Download dragon.txt file
             uses: actions/download-artifact@v4
             with:
@@ -49,9 +46,6 @@ jobs:
         needs: [test_job_2]
         runs-on: ubuntu-latest
         steps:
-          - name: Checkout Repo
-            uses: actions/checkout@v4
-
           - name: Download dragon.txt file
             uses: actions/download-artifact@v4
             with:
