@@ -3,8 +3,8 @@ name: Generate ASCII Artwork
 on: push
 
 jobs:
-    ascii_job:
-        name: ASCII Job
+    build_job_1:
+        name: build job 1
         runs-on: ubuntu-latest
         steps:
           - name: Checkout Repo
@@ -17,3 +17,31 @@ jobs:
             run: |
              chmod +x ascii-script.sh
              ./ascii-script.sh
+
+    test_job_2:
+        name: Test job 2
+        needs: build_job_1
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout Repo
+            uses: actions/checkout@v4
+
+          - name: List Repo
+            run: ls -ltra
+
+          - name: Test File
+            run: grep -i "dragon" dragon.txt
+
+    deploy_job_3:
+        name: build job 3
+        needs: [test_job_2]
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout Repo
+            uses: actions/checkout@v4
+
+          - name: List Repo
+            run: ls -ltra
+
+          - name: read FIle
+            run: cat dragon.txt
